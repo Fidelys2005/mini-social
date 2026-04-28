@@ -1,4 +1,4 @@
-const API = '/api';
+const API = "https://mini-social-u0yc.onrender.com/api";
 
 async function login() {
   const email = document.getElementById('email').value.trim();
