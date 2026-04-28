@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messages – SocialApp</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="feed.html" class="nav-logo">🌐 SocialApp</a>
+    <div class="nav-links">
+      <a href="feed.html" class="nav-link">🏠 Feed</a>
+      <a href="messages.html" class="nav-link active">💬 Messages</a>
+      <a href="#" class="nav-link" onclick="goToMyProfile()">👤 Profil</a>
+      <button class="btn btn-sm btn-outline" onclick="logout()">Déconnexion</button>
+    </div>
+  </nav>
+
+  <div class="messages-layout">
+    <aside class="conversations-panel">
+      <div class="panel-header">
+        <h3>Messages</h3>
+        <div class="search-conv">
+          <input type="text" id="conv-search" placeholder="Rechercher..." oninput="searchConv()"/>
+        </div>
+      </div>
+      <div id="conversations-list"></div>
+    </aside>
+
+    <main class="chat-panel" id="chat-panel">
+      <div class="no-conv-selected">
+        <span>💬</span>
+        <p>Sélectionnez une conversation</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/messages.js"></script>
+</body>
+</html>

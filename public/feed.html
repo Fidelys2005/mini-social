@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feed – SocialApp</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="feed.html" class="nav-logo">🌐 SocialApp</a>
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="🔍 Rechercher un utilisateur..." oninput="searchUsers()"/>
+      <div id="search-results" class="search-dropdown hidden"></div>
+    </div>
+    <div class="nav-links">
+      <a href="feed.html" class="nav-link active">🏠 Feed</a>
+      <a href="messages.html" class="nav-link">💬 Messages</a>
+      <a href="#" class="nav-link" onclick="goToMyProfile()">👤 Profil</a>
+      <button class="btn btn-sm btn-outline" onclick="logout()">Déconnexion</button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-card" id="user-info-sidebar"></div>
+    </aside>
+
+    <main class="feed-main">
+      <div class="post-composer card">
+        <div class="composer-header">
+          <div class="avatar-sm" id="composer-avatar">👤</div>
+          <textarea id="post-content" placeholder="Quoi de neuf ?" rows="3"></textarea>
+        </div>
+        <div class="composer-footer">
+          <span id="char-count" class="char-count">0 / 280</span>
+          <button class="btn btn-primary" onclick="createPost()">Publier</button>
+        </div>
+      </div>
+      <div id="posts-container"></div>
+    </main>
+  </div>
+
+  <script src="js/feed.js"></script>
+</body>
+</html>

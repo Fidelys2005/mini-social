@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscription – SocialApp</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="index.html" class="logo-small">🌐 SocialApp</a>
+      <h2>Créer un compte</h2>
+      <div id="error-msg" class="alert alert-error hidden"></div>
+      <div class="form-group">
+        <label>Pseudo</label>
+        <input type="text" id="username" placeholder="votre_pseudo"/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="vous@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input type="password" id="password" placeholder="Minimum 6 caractères"/>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="register()">S'inscrire</button>
+      <p class="auth-switch">Déjà un compte ? <a href="login.html">Se connecter</a></p>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

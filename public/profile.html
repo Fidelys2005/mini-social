@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil – SocialApp</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="feed.html" class="nav-logo">🌐 SocialApp</a>
+    <div class="nav-links">
+      <a href="feed.html" class="nav-link">🏠 Feed</a>
+      <a href="messages.html" class="nav-link">💬 Messages</a>
+      <a href="#" class="nav-link active" onclick="goToMyProfile()">👤 Profil</a>
+      <button class="btn btn-sm btn-outline" onclick="logout()">Déconnexion</button>
+    </div>
+  </nav>
+
+  <div class="profile-page">
+    <div class="profile-header card" id="profile-header"></div>
+    <div id="profile-posts"></div>
+  </div>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>
