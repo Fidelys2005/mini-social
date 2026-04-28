@@ -1,3 +1,4 @@
+const API = "https://mini-social-u0yc.onrender.com/api";
 let currentUser = null;
 let activeContact = null;
 let pollInterval = null;
