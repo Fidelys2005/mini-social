@@ -1,4 +1,4 @@
-const API = '/api';
+const API = "https://mini-social-u0yc.onrender.com/api";
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
