@@ -1,4 +1,4 @@
-const API = window.location.origin + '/api';
+const API = '/api';
 
 async function login() {
   const email = document.getElementById('email').value.trim();
