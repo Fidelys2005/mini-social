@@ -244,11 +244,54 @@ input, textarea, button { font-family: inherit; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  /* Layout général */
   .app-layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
-  .messages-layout { grid-template-columns: 1fr; }
-  .conversations-panel { display: none; }
+
+  /* Navbar */
   .navbar { padding: 0 12px; gap: 10px; }
-  .nav-links .nav-link span { display: none; }
+
+  /* Messages — afficher liste OU chat selon sélection */
+  .messages-layout {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 64px);
+    position: relative;
+  }
+
+  .conversations-panel {
+    display: flex; /* ✅ visible par défaut sur mobile */
+    width: 100%;
+    height: 100%;
+  }
+
+  .chat-panel {
+    display: none; /* caché par défaut sur mobile */
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    background: var(--bg);
+  }
+
+  /* Quand une conversation est ouverte */
+  .chat-panel.open {
+    display: flex;
+  }
+
+  .conversations-panel.hidden-mobile {
+    display: none;
+  }
+
+  /* Bouton retour sur mobile */
+  .back-btn {
+    display: flex !important;
+  }
+
+  /* Profile */
   .profile-header { flex-direction: column; align-items: center; text-align: center; }
 }
+
+/* Cacher le bouton retour sur desktop */
+.back-btn { display: none; }

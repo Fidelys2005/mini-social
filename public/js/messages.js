@@ -1,4 +1,4 @@
-const API = "https://mini-social-u0yc.onrender.com/api";
+const API = '/api';
 let currentUser = null;
 let activeContact = null;
 let pollInterval = null;
@@ -73,12 +73,10 @@ async function openChat(contactId) {
     pollInterval = null;
   }
 
-  // ✅ Forcer en entier
   activeContact = parseInt(contactId);
 
   // Marquer conversation active
   document.querySelectorAll('.conv-item').forEach(el => el.classList.remove('active'));
-  event?.target?.closest('.conv-item')?.classList.add('active');
 
   try {
     const res = await fetch(`${API}/users/${activeContact}`, { headers: authHeaders() });
@@ -88,6 +86,7 @@ async function openChat(contactId) {
     const panel = document.getElementById('chat-panel');
     panel.innerHTML = `
       <div class="chat-header">
+        <button class="back-btn btn btn-sm btn-outline" onclick="backToList()">← Retour</button>
         <div class="avatar-sm">${name?.[0]?.toUpperCase()}</div>
         <h4>${name}</h4>
         <a href="profile.html?id=${activeContact}" class="btn btn-sm btn-outline" style="margin-left:auto">
@@ -101,13 +100,15 @@ async function openChat(contactId) {
         <button class="btn btn-primary" onclick="sendMessage()">Envoyer</button>
       </div>`;
 
-    // ✅ Charger les messages une première fois
+    // ✅ Afficher chat sur mobile
+    panel.classList.add('open');
+    document.querySelector('.conversations-panel').classList.add('hidden-mobile');
+
     await loadMessages(activeContact);
 
-    // ✅ Démarrer le polling avec la bonne valeur fixée
+    // ✅ Polling fixé sur le bon contact
     const fixedContactId = activeContact;
     pollInterval = setInterval(async () => {
-      // ✅ Vérifier que la conversation n'a pas changé
       if (activeContact === fixedContactId) {
         await loadMessages(fixedContactId);
       } else {
@@ -126,7 +127,7 @@ async function loadMessages(contactId) {
   const container = document.getElementById('chat-messages');
   if (!container) return;
 
-  // ✅ Vérifier qu'on charge bien la bonne conversation
+  // ✅ Vérifier qu'on charge la bonne conversation
   if (parseInt(contactId) !== parseInt(activeContact)) return;
 
   try {
@@ -171,7 +172,6 @@ async function sendMessage() {
   const content = input.value.trim();
   if (!content || !activeContact) return;
 
-  // ✅ Sauvegarder le contactId au moment de l'envoi
   const contactId = parseInt(activeContact);
   input.value = '';
 
@@ -192,6 +192,21 @@ async function sendMessage() {
   } catch (err) {
     console.error('Erreur sendMessage:', err);
   }
+}
+
+function backToList() {
+  if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+  activeContact = null;
+
+  // ✅ Retour liste sur mobile
+  document.getElementById('chat-panel').classList.remove('open');
+  document.querySelector('.conversations-panel').classList.remove('hidden-mobile');
+
+  document.getElementById('chat-panel').innerHTML = `
+    <div class="no-conv-selected">
+      <span>💬</span>
+      <p>Sélectionnez une conversation</p>
+    </div>`;
 }
 
 function searchConv() {
