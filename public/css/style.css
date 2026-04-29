@@ -243,39 +243,82 @@ input, textarea, button { font-family: inherit; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===== RESPONSIVE ===== */
+
 @media (max-width: 768px) {
-  /* Layout général */
   .app-layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
-
-  /* Navbar */
   .navbar { padding: 0 12px; gap: 10px; }
+  .nav-links .nav-link span { display: none; }
+  .profile-header { flex-direction: column; align-items: center; text-align: center; }
 
-  /* Messages — afficher liste OU chat selon sélection */
+  /* ✅ Recherche visible sur mobile */
+  .nav-search {
+    display: flex;
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .nav-search input {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  /* ✅ Navbar reorganisée sur mobile */
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  /* ✅ Liens navbar plus compacts */
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    justify-content: space-around;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+    padding: 6px 8px;
+  }
+
+  .btn-sm {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  /* Messages mobile */
   .messages-layout {
     grid-template-columns: 1fr;
-    height: calc(100vh - 64px);
-    position: relative;
+    height: calc(100vh - 110px);
   }
 
   .conversations-panel {
-    display: flex; /* ✅ visible par défaut sur mobile */
+    display: flex;
     width: 100%;
     height: 100%;
   }
 
   .chat-panel {
-    display: none; /* caché par défaut sur mobile */
+    display: none;
     position: fixed;
-    top: 64px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 50;
+    z-index: 200;
     background: var(--bg);
   }
 
-  /* Quand une conversation est ouverte */
   .chat-panel.open {
     display: flex;
   }
@@ -284,14 +327,39 @@ input, textarea, button { font-family: inherit; }
     display: none;
   }
 
-  /* Bouton retour sur mobile */
   .back-btn {
     display: flex !important;
   }
 
   /* Profile */
-  .profile-header { flex-direction: column; align-items: center; text-align: center; }
-}
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-/* Cacher le bouton retour sur desktop */
+  .profile-stats {
+    justify-content: center;
+  }
+
+  .profile-actions {
+    justify-content: center;
+  }
+
+  /* Feed */
+  .post-composer textarea {
+    font-size: 0.9rem;
+  }
+
+  /* Search dropdown plein écran mobile */
+  .search-dropdown {
+    position: fixed;
+    top: auto;
+    left: 12px;
+    right: 12px;
+    max-height: 50vh;
+    z-index: 300;
+  }
+}
 .back-btn { display: none; }
+ 
